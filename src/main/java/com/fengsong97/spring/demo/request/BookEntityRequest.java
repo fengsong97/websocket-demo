@@ -7,7 +7,7 @@ import lombok.Data;
  * 创建时间 2018/04/25 17:01
  **/
 @Data
-public class BookCreateRequest {
+public class BookEntityRequest {
     private String name;
     private String desciption;
 }

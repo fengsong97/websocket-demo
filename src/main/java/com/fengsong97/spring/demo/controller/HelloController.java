@@ -1,14 +1,15 @@
 package com.fengsong97.spring.demo.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.fengsong97.spring.demo.entity.Book;
-import com.fengsong97.spring.demo.request.BookCreateRequest;
+import com.fengsong97.spring.demo.entity.book.BookEntity;
+import com.fengsong97.spring.demo.repositories.BookRepository;
+import com.fengsong97.spring.demo.request.BookEntityRequest;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.mapstruct.Context;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,33 +20,60 @@ import javax.validation.Valid;
  * 创建时间 2018/04/25 15:17
  **/
 @RestController
-@RequestMapping("/hello")
-@Api(value = "hello相关", description = "hello相关接口")
+@RequestMapping("/book")
+@Api(value = "book相关", description = "book相关接口")
 public class HelloController {
 
-    @ApiOperation(value = "获得详情，返回JSON", notes = "")
+    @Autowired
+    public BookRepository bookRepository;
+
+    @ApiOperation(value = "查看一本书详情，返回JSON", notes = "")
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public String bookFindOne(@PathVariable("id") Long id) {
+    public String BookFindOne(@PathVariable("id") Long id) {
 
-        Book book = new Book();
-        book.setId(id);
-        book.setName("Think in java");
-        book.setDescription("这是一本关于Java思想的书。");
-
-        return JSONObject.toJSONString(book);
+        BookEntity bookEntity = bookRepository.findById(id).orElse(null);
+        return JSONObject.toJSONString(bookEntity);
     }
 
     @ApiOperation(value = "创建一本书", notes = "")
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public String bookCreate(@ApiParam(value = "创建一本书的postData", required = true) @Valid @RequestBody BookCreateRequest bookCreateRequest,
-                             @Context HttpServletRequest request) {
+    public String BookCreate(@ApiParam(value = "创建一本书的data", required = true) @Valid @RequestBody BookEntityRequest bookEntityRequest,
+                                   @Context HttpServletRequest request) {
 
-        return JSONObject.toJSONString(bookCreateRequest);
+        BookEntity bookEntity = new BookEntity();
+        bookEntity.setName(bookEntityRequest.getName());
+        bookEntity.setDescription(bookEntityRequest.getDesciption());
+        bookEntity = bookRepository.saveAndFlush(bookEntity);
+
+        return JSONObject.toJSONString(bookEntity);
     }
 
+    @ApiOperation(value = "更新一本书", notes = "")
+    @PutMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public String BookPut(@PathVariable("id") Long id, @ApiParam(value = "更新一本书的data", required = true) @Valid @RequestBody BookEntityRequest bookEntityRequest,
+                                @Context HttpServletRequest request) {
+
+        BookEntity old = bookRepository.findById(id).orElse(null);
+
+        old.setName(bookEntityRequest.getName());
+        old.setDescription(bookEntityRequest.getDesciption());
+        old = bookRepository.save(old);
+
+        return JSONObject.toJSONString(old);
+    }
+
+    @ApiOperation(value = "删除一本书", notes = "")
+    @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public String BookDelete(@PathVariable("id") Long id, @Context HttpServletRequest request) {
+
+        bookRepository.deleteById(id);
+        return "已删除";
+    }
+
+
     @ApiOperation(value = "返回字符串", notes = "")
-    @GetMapping(value = "/string", produces = MediaType.APPLICATION_JSON_VALUE)
-    public String greeting() {
+    @GetMapping(value = "/hello", produces = MediaType.APPLICATION_JSON_VALUE)
+    public String hello() {
         return "Hello World";
     }
 }

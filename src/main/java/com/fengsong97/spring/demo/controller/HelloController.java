@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @Api(value = "hello", description = "hello相关接口")
 public class HelloController {
 
-    }
+    
     @ApiOperation(value = "欢迎接口", notes = "")
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public String hello(@RequestParam(value = "name", required = false, defaultValue = "客人") String name) {

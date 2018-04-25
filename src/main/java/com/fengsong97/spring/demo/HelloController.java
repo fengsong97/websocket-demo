@@ -1,5 +1,7 @@
 package com.fengsong97.spring.demo;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,8 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
  **/
 @RestController
 @RequestMapping("/hello")
+@Api(value = "hello相关", description = "hello相关接口")
 public class HelloController {
 
+    @ApiOperation(value = "返回字符串", notes = "")
     @GetMapping(value = "/string", produces = MediaType.APPLICATION_JSON_VALUE)
     public String greeting() {
         return "Hello World";

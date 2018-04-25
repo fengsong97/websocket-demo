@@ -10,5 +10,5 @@ import java.io.Serializable;
  * 创建时间 2018/04/25 17:29
  **/
 
-public interface BookRepository extends JpaRepository<BookEntity,Long> {
+public interface BookRepository extends JpaRepository<BookEntity,Serializable> {
 }

@@ -19,13 +19,13 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class Swagger2 {
 
-//    @Value("${swagger.show}")
-    private boolean swaggerShow = true;
+    @Value("${customVariables.swagger.show}")
+    private boolean show = false;
 
     @Bean
     public Docket createRestApi(){
         return new Docket(DocumentationType.SWAGGER_2)
-                .enable(swaggerShow)
+                .enable(show)
                 .apiInfo(apiInfo())
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.fengsong97.spring.demo"))
@@ -35,9 +35,9 @@ public class Swagger2 {
 
     public ApiInfo apiInfo(){
         return new ApiInfoBuilder()
-                .title("fengsong97-RestfulApi-接口")
+                .title("swagger-restfulApi-接口")
                 .description("XXX接口文档")
-                .termsOfServiceUrl("https://p-api-dev.kanche.com/")
+                .termsOfServiceUrl("https://help.github.com/")
                 .contact(new Contact("冯松", "https://github.com/fengsong97", "973017388@qq.com"))
                 .version("0.1")
                 .build();

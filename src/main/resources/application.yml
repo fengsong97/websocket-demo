@@ -38,10 +38,7 @@ logging:
 
 
 
-
-
-
-
-
 customVariables:
+  swagger:
+    show: true
   name: "小明"

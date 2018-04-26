@@ -1,10 +1,7 @@
 package com.fengsong97.spring.demo.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.fengsong97.spring.demo.entity.book.AuthorEntity;
 import com.fengsong97.spring.demo.entity.book.BookEntity;
-import com.fengsong97.spring.demo.entity.book.PressEnity;
-import com.fengsong97.spring.demo.repositories.BookRepository;
 import com.fengsong97.spring.demo.request.BookEntityRequest;
 import com.fengsong97.spring.demo.services.BookService;
 import io.swagger.annotations.Api;
@@ -17,8 +14,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 创建人 fengsong

@@ -32,7 +32,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public BookEntity save(BookEntity bookEntity) {
-        bookEntity = bookRepository.saveAndFlush(bookEntity);
+        bookEntity = bookRepository.save(bookEntity);
         return bookEntity;
     }
 

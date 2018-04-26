@@ -1,6 +1,7 @@
 package com.fengsong97.spring.demo.entity;
 
 import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -28,8 +29,11 @@ public abstract class BaseEntity implements Serializable {
     private Long id;
 
     @CreatedDate
-    public Date timeCreate;
+    private Date timeCreate;
 
     @LastModifiedDate
-    public Date timeLastModifiy;
+    private Date timeLastModifiy;
+
+    private boolean enable = true;
+
 }

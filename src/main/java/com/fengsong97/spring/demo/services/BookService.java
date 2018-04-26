@@ -1,6 +1,7 @@
 package com.fengsong97.spring.demo.services;
 
 import com.fengsong97.spring.demo.entity.book.BookEntity;
+import com.fengsong97.spring.demo.request.BookEntityRequest;
 
 import java.util.List;
 
@@ -15,9 +16,9 @@ public interface BookService {
 
     List<BookEntity> findAll();
 
-    BookEntity save(BookEntity bookEntity);
+    BookEntity save(BookEntityRequest bookEntityRequest);
 
-    BookEntity put(BookEntity bookEntity);
+    BookEntity put(Long id, BookEntityRequest bookEntityRequest);
 
     void delete(Long id);
 }

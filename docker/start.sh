@@ -1,5 +1,5 @@
 #!/bin/bash
-configUrl=$1/api/download?application=$2\&tag=$3
+configUrl=$1\$2\$3 --no-check-certificate
 wget -O app.yml $configUrl
 echo "*****************************************************配置文件开始*************************************************************************************"
 cat app.yml

@@ -40,5 +40,5 @@ logging:
 
 customVariables:
   swagger:
+    env: "main"
     show: true
-  name: "小明"

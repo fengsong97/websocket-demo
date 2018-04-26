@@ -22,6 +22,9 @@ public class Swagger2 {
     @Value("${customVariables.swagger.show}")
     private boolean show = false;
 
+    @Value("${customVariables.swagger.env}")
+    private String env;
+
     @Bean
     public Docket createRestApi(){
         return new Docket(DocumentationType.SWAGGER_2)
@@ -35,7 +38,7 @@ public class Swagger2 {
 
     public ApiInfo apiInfo(){
         return new ApiInfoBuilder()
-                .title("swagger-restfulApi-接口")
+                .title("swagger-restfulApi-接口-"+env)
                 .description("XXX接口文档")
                 .termsOfServiceUrl("https://help.github.com/")
                 .contact(new Contact("冯松", "https://github.com/fengsong97", "973017388@qq.com"))

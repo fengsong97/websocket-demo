@@ -1,4 +1,4 @@
-FROM java:8-jre
+FROM hub.c.163.com/library/java:8-jre
 RUN mvn -Dmaven.test.failure.ignore clean package
 COPY target/my-spring-demo-0.1.0.jar  my-spring-demo.jar
 COPY docker/start.sh /

@@ -8,6 +8,11 @@ import lombok.Data;
  **/
 @Data
 public class BookEntityRequest {
+
     private String name;
     private String desciption;
+
+    private String authorName;
+    private String pressName;
+
 }

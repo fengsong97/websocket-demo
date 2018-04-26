@@ -16,7 +16,7 @@ import java.util.Date;
 @Data
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-public class BaseEntity implements Serializable {
+public abstract class BaseEntity implements Serializable {
 
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
 

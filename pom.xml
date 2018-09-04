@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.fengsong97.spring</groupId>
-    <artifactId>my-spring-demo</artifactId>
+    <artifactId>websocket-demo</artifactId>
     <version>0.1.0</version>
 
     <parent>
@@ -50,25 +50,11 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- 持久层支持,其中包含hibernate -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <artifactId>spring-boot-starter-websocket</artifactId>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
-        <!--<dependency>-->
-            <!--<groupId>mysql</groupId>-->
-            <!--<artifactId>mysql-connector-java</artifactId>-->
-            <!--<version>8.0.11</version>-->
-        <!--</dependency>-->
-
-        <!-- 内存数据库h2-->
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <scope>runtime</scope>
-        </dependency>
 
     </dependencies>
 
